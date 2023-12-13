@@ -7,7 +7,7 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 
-const MyCard = ({title, dateOfCreation, prise, imgURL}) => {
+const MyCard = ({title, dateOfCreation, prise, imgURL, handleClick}) => {
   return (
     <Card sx={{ width: 300 }}>
       <div>
@@ -44,6 +44,7 @@ const MyCard = ({title, dateOfCreation, prise, imgURL}) => {
           color="primary"
           aria-label="Explore Bahamas Islands"
           sx={{ ml: 'auto', alignSelf: 'center', fontWeight: 600 }}
+          onClick={handleClick}
         >
           Ansehen
         </Button>

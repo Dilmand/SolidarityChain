@@ -1,7 +1,8 @@
 import Avatar from "@mui/material/Avatar";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import VolunteerActivism from "@mui/icons-material/VolunteerActivism";
 
 import React from "react";
+import Button from '@mui/material/Button';
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -17,32 +18,23 @@ const Navbar = () => {
     <AppBar position="static">
       <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
         {/* Logo auf der linken Seite */}
-        <div className=" flex">
-          <ShoppingBagIcon></ShoppingBagIcon>
-          <Typography variant="h6">ShopChain</Typography>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <VolunteerActivism/>
+          <Typography variant="h6">SolidarityChain</Typography>
         </div>
 
         {/* Suchleiste in der Mitte */}
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div style={{ position: "relative", marginRight: "10px" }}>
-            <div
-              className="flex items-center absolute"
-              style={{ left: "-30px" }}
-            >
-              <SearchIcon />
-            </div>
+            <SearchIcon />
             <InputBase
               placeholder="Search..."
               inputProps={{ "aria-label": "search", style: { color: "white" } }}
             />
-          </div>
         </div>
 
         {/* Avatar auf der rechten Seite */}
-        <div>
-          <Badge badgeContent={4} color="primary">
-            <MailIcon color="action" />
-          </Badge>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Button variant="contained" color="info">Kampagne Starten</Button>
           <IconButton
             size="large"
             edge="end"
@@ -51,7 +43,7 @@ const Navbar = () => {
             aria-haspopup="true"
             // Hier sollte die Logik für das Öffnen des Avatar-Menüs hinzugefügt werden
           >
-            <Avatar alt="Travis Howard" src="../src/assets/dilmand.jpeg" />
+            <Avatar/>
           </IconButton>
         </div>
       </Toolbar>
