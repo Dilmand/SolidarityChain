@@ -1,53 +1,37 @@
-import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
-import Button from '@mui/joy/Button';
+import React from 'react';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
-import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 
-const MyCard = ({title, dateOfCreation, prise, imgURL, handleClick}) => {
+const MyCard = ({ creatorName, title, imageUrl, description, goal, endDate }) => {
   return (
-    <Card sx={{ width: 300 }}>
-      <div>
-        <Typography level="title-lg">{title}</Typography>
-        <Typography level="body-sm">{dateOfCreation}</Typography>
-        <IconButton
-          aria-label="bookmark Bahamas Islands"
-          variant="plain"
-          color="neutral"
-          size="sm"
-          sx={{ position: 'absolute', top: '0.875rem', right: '0.5rem' }}
-        >
-          <BookmarkAdd />
-        </IconButton>
+    <Card className="w-[280px] h-[380px] overflow-hidden shadow-lg bg-white flex flex-col">
+      {/* Stellen Sie sicher, dass das Bild die obere Hälfte der Karte füllt und zentriert/bedeckt wird */}
+      <div className="w-full h-1/2 overflow-hidden">
+        <img src={imageUrl} alt={title} className="w-full h-full object-cover object-center" />
       </div>
-      <AspectRatio minHeight="120px" maxHeight="200px">
-        <img
-          style={{ objectFit: 'contain', width: '100%', height: '100%' }}
-          src={imgURL}
-          loading="lazy"
-          alt=""
-        />
-      </AspectRatio>
-      <CardContent orientation="horizontal">
-        <div>
-          <Typography level="body-xs">Preis:</Typography>
-          <Typography fontSize="lg" fontWeight="lg">
-            {prise}
+      <CardContent className="flex-1">
+        <Typography level="h5" component="h3" className="font-bold text-xl mb-2">
+          {title}
+        </Typography>
+        <Typography level="body2" component="p" className="text-gray-700 text-base flex-1">
+          {description}
+        </Typography>
+        <div className="mt-4">
+          <Typography level="body3" component="p" className="text-gray-600">
+            Ziel: {goal}
+          </Typography>
+          <Typography level="body3" component="p" className="text-gray-600">
+            Endet am: {endDate}
           </Typography>
         </div>
-        <Button
-          variant="solid"
-          size="md"
-          color="primary"
-          aria-label="Explore Bahamas Islands"
-          sx={{ ml: 'auto', alignSelf: 'center', fontWeight: 600 }}
-          onClick={handleClick}
-        >
-          Ansehen
-        </Button>
+        <div className="flex items-center justify-between mt-4">
+          <Typography level="body3" component="p" className="text-gray-600">
+            Erstellt von: {creatorName}
+          </Typography>
+          <BookmarkAdd />
+        </div>
       </CardContent>
     </Card>
   );
