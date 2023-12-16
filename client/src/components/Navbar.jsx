@@ -15,8 +15,8 @@ import MailIcon from '@mui/icons-material/Mail';
 
 const Navbar = () => {
   return (
-    <AppBar position="static">
-      <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+    <AppBar position="static" >
+      <Toolbar style={{ display: "flex", justifyContent: "space-between", backgroundColor: "#163020"  }}>
         {/* Logo auf der linken Seite */}
         <div style={{ display: "flex", alignItems: "center" }}>
           <VolunteerActivism/>

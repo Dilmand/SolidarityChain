@@ -1,33 +1,20 @@
 import React from 'react';
-import Drawer from '@mui/material/Drawer';
+import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
-const Sidebar = ({ open, onClose }) => {
+const Sidebar = () => {
   return (
-    <Drawer
-      open={open}
-      onClose={onClose}
-      anchor="left"
-      variant="temporary"
-      ModalProps={{
-        keepMounted: true,
-      }}
-    >
-      <List>
-        <ListItem button>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="About" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Projects" />
-        </ListItem>
-        {/* Add more menu items as needed */}
-      </List>
-    </Drawer>
+    <div className="bg-custom-green-light h-full w-60 fixed">
+      hallo
+    </div>
   );
 };
 
