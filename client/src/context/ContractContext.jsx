@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import { contractAddress, contractABI } from "./constans";
 import Web3 from "web3";
 export const ContractContext = createContext();
+import {daysLeft} from '../utils';
 
 export const ContractProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
@@ -47,6 +48,7 @@ export const ContractProvider = ({ children }) => {
 
   const publishCampaign = async (title, description, target, deadline, image) => {
     const deadLine = new Date(deadline).getTime();
+    console.log(deadline);
     try {
       await contract.methods.createCampaign(title, description, target, deadLine, image).send({from: currentAccount});
       
@@ -65,12 +67,12 @@ export const ContractProvider = ({ children }) => {
         title: campaign.title,
         description: campaign.description,
         target: ethers.utils.formatEther(campaign.target.toString()),
-        deadline: new Date(Number(campaign.deadline) * 1000).toLocaleDateString(), // Konvertierung des Unix-Zeitstempels in ein lesbares Datum
+        deadline: ethers.BigNumber.from(campaign.deadline).toNumber(),
         amountCollected: ethers.utils.formatEther(campaign.amountCollected.toString()),
         image: campaign.image,
-        donations: campaign.donations, // Dies scheint bereits ein Array zu sein
-        donators: campaign.donators, // Dies scheint ebenfalls bereits ein Array zu sein
-        // pId könnten Sie weglassen, es sei denn, es gibt einen spezifischen Grund, ihn zu behalten
+        donations: campaign.donations, 
+        donators: campaign.donators, 
+
     }));
     return formattedCampaigns;
   } catch (error) {

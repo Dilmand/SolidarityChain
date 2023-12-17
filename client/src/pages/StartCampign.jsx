@@ -9,12 +9,12 @@ const CampaignForm = () => {
   const[isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [campaign, setCampaign] = useState({
-    creator: "",
-    title: "",
-    imageUrl: "",
-    description: "",
-    goal: "",
-    endDate: "",
+    creator: '',
+    title: '',
+    imageUrl: '',
+    description: '',
+    goal: '',
+    endDate: '',
   });
 
   const handleChange = (e) => {
@@ -26,12 +26,11 @@ const CampaignForm = () => {
     setIsLoading(true);
     await publishCampaign(campaign.title, campaign.description, campaign.goal, campaign.endDate, campaign.imageUrl);
     setIsLoading(false);
-    //navigate('/');
+    navigate('/');
 
   };
 
   return (
-    // Dieser Container füllt die gesamte Bildschirmhöhe aus und zentriert das Formular in der Mitte
     <div className="flex justify-center items-start pt-8 pb-16 h-screen bg-gray-100">
       <div className="w-full max-w-3xl mx-auto bg-white p-6 rounded shadow-md">
         <h2 className="text-2xl font-bold mb-6 text-center">

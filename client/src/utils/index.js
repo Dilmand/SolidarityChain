@@ -25,3 +25,10 @@ export const daysLeft = (deadline) => {
     img.onload = () => callback(true);
     img.onerror = () => callback(false);
   };
+
+
+export const convertToDate = (unixTimestampMs) =>{
+    const date = new Date(unixTimestampMs);
+    const formattedDate = date.toLocaleDateString("en-US");
+    return formattedDate;
+}
