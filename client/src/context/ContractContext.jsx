@@ -45,6 +45,16 @@ export const ContractProvider = ({ children }) => {
     }
   };
 
+  const publishCampaign = async (title, description, target, deadline, image) => {
+    const deadLine = new Date(deadline).getTime();
+    try {
+      await contract.methods.createCampaign(title, description, target, deadLine, image).send({from: currentAccount});
+      
+    } catch (error) {
+      console.log("Faild to publish the campaign", error);
+    }
+  }
+
   const getCampaigns = async () => {
     if (!contract) return [];
   
@@ -75,7 +85,7 @@ export const ContractProvider = ({ children }) => {
 
   return (
     <ContractContext.Provider
-      value={{ contract, currentAccount, getCampaigns, connectWallet }}
+      value={{ contract, currentAccount, getCampaigns, connectWallet, publishCampaign }}
     >
       {children}
     </ContractContext.Provider>

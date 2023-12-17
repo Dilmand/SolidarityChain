@@ -3,7 +3,7 @@ import { useState } from "react";
 import React from "react";
 import { NavBar, Sidebar, Layout } from "./components";
 
-import { Home, AnzeigeDetails, StartCampign, MyCampaings } from "./pages";
+import { Home, CampaignDetailsPage, StartCampign, MyCampaings } from "./pages";
 import Box from "@mui/material/Box";
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
           <Route index element={<Home/>}/>
           <Route path="/StartCampaign" element={<StartCampign/>}/>
           <Route path="/MyCampaigns" element={<MyCampaings/>}/>
-          <Route path="/CampaignDetails/:id" element={<AnzeigeDetails/>}/>
+          <Route path="/CampaignDetails/:id" element={<CampaignDetailsPage/>}/>
         </Route>
       </Routes>
     </Router>

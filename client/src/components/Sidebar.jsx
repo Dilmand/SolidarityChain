@@ -17,7 +17,7 @@ import { navlinks } from '../constants';
 
 const Sidebar = () => {
   return (
-    <div className=' bg-green-900 w-60 p-3 flex flex-col text-white'>
+    <div className='fixed h-full bg-green-900 w-60 p-3 flex flex-col text-white'>
 
       <div className='flex items-center gap-2 px-1 py-3'>
       <VolunteerActivism/>

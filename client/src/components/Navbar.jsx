@@ -16,7 +16,7 @@ const Navbar = () => {
   }
   return (
     <div
-      className="flex items-center p-0.1 bg-white"
+      className="fixed top-0 left-60 right-0 z-10 bg-white shadow flex items-center p-2"
     >
       <div className="flex-0 items-center">
         <IconButton type="submit" aria-label="search">

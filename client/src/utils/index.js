@@ -1,7 +1,7 @@
 export const daysLeft = (deadline) => {
+    console.log(deadline);
     const difference = new Date(deadline).getTime() - Date.now();
     const remainingDays = difference / (1000 * 3600 * 24);
-  
     return remainingDays.toFixed(0);
   };
   
@@ -10,6 +10,11 @@ export const daysLeft = (deadline) => {
   
     return percentage;
   };
+
+    export const convertToUnixTimestamp = (dateString) => {
+    const date = new Date(dateString);
+    return Math.floor(date.getTime() / 1000);
+  }
   
   export const checkIfImage = (url, callback) => {
     const img = new Image();
