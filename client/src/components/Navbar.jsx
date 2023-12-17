@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { InputBase } from "@mui/material";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import {ContractContext} from "../context/ContractContext";
 
 const Navbar = () => {
+  const {connectWallet, currentAccount} = useContext(ContractContext)
+
   const navigate = useNavigate();
   const handleOnClick = () => {
     navigate('/StartCampaign')
@@ -32,9 +35,11 @@ const Navbar = () => {
       <Button variant="contained" color="success" style={{margin:10}} onClick={handleOnClick}>
         Kampagne starten
       </Button>
-      <IconButton edge="start" color="inherit" aria-label="open profile">
+      {!currentAccount&&
+      <IconButton edge="start" color="inherit" aria-label="open profile" onClick={connectWallet}>
         <MdOutlineAccountCircle size="2em" />
       </IconButton>
+}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "ethers": "^6.9.0",
+    "ethers": "^5.7.2",
     "react-icons": "^4.12.0"
   }
 }
