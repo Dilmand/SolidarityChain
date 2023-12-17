@@ -17,7 +17,6 @@ const CampaignForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Logik zum Speichern der Kampagnendaten
-    console.log(campaign);
   };
 
   return (

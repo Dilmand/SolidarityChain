@@ -1,9 +1,42 @@
-import React, {useContext} from 'react'
-import {MyCard, ShowCampaigns} from "../components"
-import { useState } from "react";
-import { Link } from 'react-router-dom';
+import React, {useContext, useState, useEffect} from 'react'
+import {ShowCampaigns} from "../components"
 import {ContractContext} from "../context/ContractContext";
 
+
+const Home =() => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [campaigns, setCampaigns] = useState([]);
+    const {contract, address ,getCampaigns } = useContext(ContractContext);
+
+    const fetchCampaigns = async () => {
+      setIsLoading(true);
+      try {
+          const data = await getCampaigns();
+          setCampaigns(data);
+      } catch (error) {
+          console.error("Fehler beim Laden der Kampagnen: ", error);
+      }
+      setIsLoading(false);
+  }
+
+    useEffect(() => {
+    if(contract) fetchCampaigns();
+  },[address, contract]);
+
+
+    return(
+         <ShowCampaigns title="Laufende Kampagne" campaigns={campaigns} isLoading={isLoading}/>
+        
+    );
+
+}
+export default Home;
+
+
+
+
+
+/*
 const campaigns = [
     {
       id: 1,
@@ -28,14 +61,4 @@ const campaigns = [
   
   ]
 
-const Home =() => {
-    const {getCampaigns} = useContext(ContractContext);
-    return(
-        <div>
-         <ShowCampaigns campaigns={campaigns}/>
-         <button onClick={getCampaigns}>getCampaigns</button>
-        </div>
-    );
-
-}
-export default Home;
+*/

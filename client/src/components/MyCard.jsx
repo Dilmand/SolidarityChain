@@ -1,40 +1,45 @@
 import React from 'react';
-import Card from '@mui/joy/Card';
-import CardContent from '@mui/joy/CardContent';
-import Typography from '@mui/joy/Typography';
-import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
+import { tagType, thirdweb } from '../assets';
+import { daysLeft } from '../utils';
 
-const MyCard = ({ creatorName, title, imageUrl, description, goal, endDate }) => {
+const FundCard = ({ owner, title, description, target, deadline, amountCollected, image, handleClick }) => {
+  const remainingDays = daysLeft(deadline);
+  
   return (
-    <Card className="w-[280px] h-[380px] overflow-hidden shadow-lg bg-white flex flex-col">
-      {/* Stellen Sie sicher, dass das Bild die obere Hälfte der Karte füllt und zentriert/bedeckt wird */}
-      <div className="w-full h-1/2 overflow-hidden">
-        <img src={imageUrl} alt={title} className="w-full h-full object-cover object-center" />
-      </div>
-      <CardContent className="flex-1">
-        <Typography level="h5" component="h3" className="font-bold text-xl mb-2">
-          {title}
-        </Typography>
-        <Typography level="body2" component="p" className="text-gray-700 text-base flex-1">
-          {description}
-        </Typography>
-        <div className="mt-4">
-          <Typography level="body3" component="p" className="text-gray-600">
-            Ziel: {goal}
-          </Typography>
-          <Typography level="body3" component="p" className="text-gray-600">
-            Endet am: {endDate}
-          </Typography>
-        </div>
-        <div className="flex items-center justify-between mt-4">
-          <Typography level="body3" component="p" className="text-gray-600">
-            Erstellt von: {creatorName}
-          </Typography>
-          <BookmarkAdd />
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+    <div className="sm:w-[288px] w-full rounded-[15px] bg-white cursor-pointer" onClick={handleClick}>
+      <img src={image} alt="fund" className="w-full h-[158px] object-cover rounded-[15px]"/>
 
-export default MyCard;
+      <div className="flex flex-col p-4">
+        <div className="flex flex-row items-center mb-[18px]">
+          <img src={tagType} alt="tag" className="w-[17px] h-[17px] object-contain"/>
+          <p className="ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808191]">Education</p>
+        </div>
+
+        <div className="block">
+          <h3 className="font-epilogue font-semibold text-[16px] text-white text-left leading-[26px] truncate">{title}</h3>
+          <p className="mt-[5px] font-epilogue font-normal text-[#808191] text-left leading-[18px] truncate">{description}</p>
+        </div>
+
+        <div className="flex justify-between flex-wrap mt-[15px] gap-2">
+          <div className="flex flex-col">
+            <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">{amountCollected}</h4>
+            <p className="mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate">Raised of {target}</p>
+          </div>
+          <div className="flex flex-col">
+            <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">{remainingDays}</h4>
+            <p className="mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate">Days Left</p>
+          </div>
+        </div>
+
+        <div className="flex items-center mt-[20px] gap-[12px]">
+          <div className="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#13131a]">
+            <img src={thirdweb} alt="user" className="w-1/2 h-1/2 object-contain"/>
+          </div>
+          <p className="flex-1 font-epilogue font-normal text-[12px] text-[#808191] truncate">by <span className="text-[#b2b3bd]">{owner}</span></p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default FundCard
