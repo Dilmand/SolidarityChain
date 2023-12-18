@@ -29,7 +29,6 @@ const CampaignForm = () => {
     navigate('/');
 
   };
-
   return (
     <div className="flex justify-center items-start pt-8 pb-16 h-screen bg-gray-100">
       <div className="w-full max-w-3xl mx-auto bg-white p-6 rounded shadow-md">

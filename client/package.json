@@ -1,5 +1,5 @@
 {
-  "name": "web3_c2c_shop",
+  "name": "SolidartyChain",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,9 +19,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
-    "react-router-dom": "^6.20.1",
-    "uuid": "^9.0.1",
-    "web3": "^4.3.0"
+    "react-router-dom": "^6.20.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

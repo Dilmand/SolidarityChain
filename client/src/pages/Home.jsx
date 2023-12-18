@@ -6,7 +6,7 @@ import {ContractContext} from "../context/ContractContext";
 const Home =() => {
     const [isLoading, setIsLoading] = useState(false);
     const [campaigns, setCampaigns] = useState([]);
-    const {contract, address ,getCampaigns } = useContext(ContractContext);
+    const {contract, currentAccount ,getCampaigns } = useContext(ContractContext);
 
     const fetchCampaigns = async () => {
       setIsLoading(true);
@@ -21,7 +21,7 @@ const Home =() => {
 
     useEffect(() => {
     if(contract) fetchCampaigns();
-  },[address, contract]);
+  },[currentAccount, contract]);
 
 
     return(
