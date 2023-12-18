@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createContext } from "react";
 import { ethers } from "ethers";
-import { contractAddress, contractABI } from "./constans";
+import { contractAddress2, contractABI2 } from "./constans";
 import Web3 from "web3";
 export const ContractContext = createContext();
 
@@ -11,7 +11,7 @@ export const ContractProvider = ({ children }) => {
   useEffect(() => {
     if (window.ethereum) {
       const web3 = new Web3(window.ethereum);
-      const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
+      const contractInstance = new web3.eth.Contract(contractABI2, contractAddress2);
       setContract(contractInstance);
     }
   }, []);

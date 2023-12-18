@@ -80,7 +80,7 @@ const stateDetailsPage = () => {
               Laden...
             </div>
           ) : (
-            "Starten"
+            "Spenden"
           )}
         </button>
       </div>

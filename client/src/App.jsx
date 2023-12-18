@@ -3,7 +3,7 @@ import { useState } from "react";
 import React from "react";
 import { NavBar, Sidebar, Layout } from "./components";
 
-import { Home, CampaignDetailsPage, StartCampign, MyCampaings } from "./pages";
+import { Home, CampaignDetailsPage, StartCampign, MyCampaings, ExpiredCampaigns } from "./pages";
 import Box from "@mui/material/Box";
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
           <Route path="/StartCampaign" element={<StartCampign/>}/>
           <Route path="/MyCampaigns" element={<MyCampaings/>}/>
           <Route path="/CampaignDetails/:id" element={<CampaignDetailsPage/>}/>
+          <Route path="/ExpiredCampigns" element={<ExpiredCampaigns/>}/>
         </Route>
       </Routes>
     </Router>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { tagType, thirdweb } from '../assets';
 import AddReactionSharpIcon from '@mui/icons-material/AddReactionSharp';
 import { daysLeft } from '../utils';
 
