@@ -7,14 +7,18 @@ import {convertToDate} from '../utils';
 
 const stateDetailsPage = () => {
   const { id } = useParams(); // Annahme, dass die Kampagnen-ID in der URL verwendet wird
-  const { contract } = useContext(ContractContext);
+  const { donateToCampaign } = useContext(ContractContext);
   const {state} = useLocation();
   const [donationAmount, setDonationAmount] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
 
   // Funktion, um die Kampagnendetails zu laden (hier pseudo-codeartig angedeutet)
 
   const handleDonate = async () => {
-    return;
+    setIsLoading(true);
+    await donateToCampaign(state.id, donationAmount);
+    setIsLoading(false);
   };
 
   return (

@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import { contractAddress, contractABI } from "./constans";
 import Web3 from "web3";
 export const ContractContext = createContext();
-import {daysLeft} from '../utils';
 
 export const ContractProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
@@ -48,9 +47,9 @@ export const ContractProvider = ({ children }) => {
 
   const publishCampaign = async (title, description, target, deadline, image) => {
     const deadLine = new Date(deadline).getTime();
-    console.log(deadline);
+    const ptarget = ethers.utils.parseUnits(target, 'ether').toHexString();
     try {
-      await contract.methods.createCampaign(title, description, target, deadLine, image).send({from: currentAccount});
+      await contract.methods.createCampaign(title, description, ptarget, deadLine, image).send({from: currentAccount});
       
     } catch (error) {
       console.log("Faild to publish the campaign", error);
@@ -63,6 +62,7 @@ export const ContractProvider = ({ children }) => {
     try {
       const campaigns = await contract.methods.getCampaigns().call();
       const formattedCampaigns = campaigns.map((campaign, id) => ({
+        id:id,
         owner: campaign.owner,
         title: campaign.title,
         description: campaign.description,
@@ -81,13 +81,40 @@ export const ContractProvider = ({ children }) => {
   }
   };
 
+  const getDonators = async (id) => {
+    if (!contract) return [];
+    try {
+      const donators = await contract.methods.getDonators(id).call();
+      const formattedDonators = [];
+
+    for(let i = 0; i < donators[0].length; i++) {
+      formattedDonators.push({
+        donator: donators[0][i],
+        donation: ethers.utils.formatEther(donators[1][i].toString())
+      })
+    }
+
+    return formattedDonators;
+  } catch (error){
+    console.log(error);
+  }
+};
+  const donateToCampaign= async (id, amount) => {
+    try {
+      await contract.methods.donateToCampaign(id).send({from:currentAccount, value:amount});
+      
+    } catch (error) {
+      console.log("Faild to donate", error);
+    }
+  }
+
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
 
   return (
     <ContractContext.Provider
-      value={{ contract, currentAccount, getCampaigns, connectWallet, publishCampaign }}
+      value={{ contract, currentAccount, getCampaigns, connectWallet, publishCampaign, getDonators, donateToCampaign}}
     >
       {children}
     </ContractContext.Provider>
