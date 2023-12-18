@@ -1,1 +1,1 @@
-# web3_C2C_shop
+# SolidarityChain
